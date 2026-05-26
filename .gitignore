@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment secrets
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Build/cache
+dist/
+build/
+.cache/
+
+# LiteLLM temp/cache
+litellm_proxy_cache.db
+
+# Local model artifacts
+models/
+checkpoints/
+
+# Session/runtime data
+sessions/
+runtime/
+
+# Large generated outputs
+outputs/
+artifacts/
+
+# Ignore sensitive configs
+secrets/
+*.pem
+*.key

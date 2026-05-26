@@ -1,0 +1,13 @@
+model_list:
+  - model_name: gemini
+    litellm_params:
+      model: gemini/gemini-2.0-flash
+      api_key: "myactualkkey"
+
+  - model_name: groq-llama
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: "myactualkkey"
+
+general_settings:
+  master_key: "hermes-master-key"
