@@ -1,0 +1,208 @@
+@'
+{
+  "project": "ultimate-budget-ai-stack",
+  "repository": "https://github.com/patricksanchez1122/ultimate-budget-ai-stack",
+  "branch": "resurrection",
+  "last_verified_commit": "ff3a84a",
+
+  "read_first": [
+    "docs/project-state.json",
+    "docs/context-pack.json",
+    "docs/runtime-state.json",
+    "docs/repo-snapshot.json"
+  ],
+
+  "current_goal": "Restore runtime startup path",
+
+  "verified": {
+    "github_branch_exists": true,
+    "venv_exists": true,
+    "litellm_installed": true,
+    "litellm_version": "1.87.0",
+    "router_config": "config/litellm-router.yaml"
+  }
+}
+'@ | Set-Content .\docs\project-state.json
+
+Verify it was created:
+
+Get-Content .\docs\project-state.json
+
+If the contents look correct:
+
+git add .\docs\project-state.json
+git commit -m "Add project state bootstrap file"
+git push
+
+Paste the output after the push and we'll do the next step.
+
+PS C:\Users\RT\ai-stack> @'
+>> {
+>>   "project": "ultimate-budget-ai-stack",
+>>   "repository": "https://github.com/patricksanchez1122/ultimate-budget-ai-stack",
+>>   "branch": "resurrection",
+>>   "last_verified_commit": "ff3a84a",
+>>
+>>   "read_first": [
+>>     "docs/project-state.json",
+>>     "docs/context-pack.json",
+>>     "docs/runtime-state.json",
+>>     "docs/repo-snapshot.json"
+>>   ],
+>>
+>>   "current_goal": "Restore runtime startup path",
+>>
+>>   "verified": {
+>>     "github_branch_exists": true,
+>>     "venv_exists": true,
+>>     "litellm_installed": true,
+>>     "litellm_version": "1.87.0",
+>>     "router_config": "config/litellm-router.yaml"
+>>   }
+>> }
+>> '@ | Set-Content .\docs\project-state.json
+PS C:\Users\RT\ai-stack> Get-Content .\docs\project-state.json
+{
+  "project": "ultimate-budget-ai-stack",
+  "repository": "https://github.com/patricksanchez1122/ultimate-budget-ai-stack",
+  "branch": "resurrection",
+  "last_verified_commit": "ff3a84a",
+
+  "read_first": [
+    "docs/project-state.json",
+    "docs/context-pack.json",
+    "docs/runtime-state.json",
+    "docs/repo-snapshot.json"
+  ],
+
+  "current_goal": "Restore runtime startup path",
+
+  "verified": {
+    "github_branch_exists": true,
+    "venv_exists": true,
+    "litellm_installed": true,
+    "litellm_version": "1.87.0",
+    "router_config": "config/litellm-router.yaml"
+  }
+}
+PS C:\Users\RT\ai-stack>
+
+Perfect.
+
+You now have the first piece of durable project memory stored inside the repository itself.
+
+Next:
+
+git add .\docs\project-state.json
+git commit -m "Add project state bootstrap file"
+git push
+
+After that succeeds, we have:
+
+GitHub
+└── resurrection
+    └── docs/project-state.json
+
+which means a future chat can begin with:
+
+Repository:
+https://github.com/patricksanchez1122/ultimate-budget-ai-stack
+
+Branch:
+resurrection
+
+Read:
+docs/project-state.json
+
+RW
+
+and immediately discover:
+
+repo
+branch
+last verified commit
+current goal
+bootstrap files to read next
+
+That's a much better starting point than relying on memory or uploads.
+
+Once you've pushed it, paste the output and we'll decide what one additional fact belongs in project-state.json next. My guess is the LiteLLM router information we just verified, but let's get the bootstrap file safely into GitHub first.
+
+You’ve reached the Free limit for chats with attachments
+
+#New one from Grok# :
+
+I think bootstrap chat migration was a success. We need to config litellm (LLLM) in a way that it boots with an agent with the least possible steps. Should I go for api keys? I just don't wan't to run into endless temporary env tests. I need a roadmap to basic agent function. I prefer to use Google AI Studio as the preliminary provider. Then we add more providers.
+
+To establish a "basic agent function" with the least possible friction using Google AI Studio as your anchor, you should avoid "endless env tests" by centralizing your configuration inside the litellm-router.yaml and using a local .env file that is excluded from Git.
+
+Here is the roadmap to a Zero-Friction Boot:
+
+1. The Strategy: "Config-First, Env-Later"
+Instead of scattering API keys throughout your system or code, treat your litellm-router.yaml as the source of truth for your model definitions.
+
+API Keys: Do not hardcode them. Use environment variable placeholders in your config.
+
+The .env File: Create a .env file in the root. This is your "Local Master Key" file.  
+Medium
+
+Note: Ensure .env is in your .gitignore so your keys never leave your machine.
+
+Boot Flow: LiteLLM automatically picks up GEMINI_API_KEY from the environment if you run your proxy with --config.
+
+2. Implementation: The Minimal Config
+Update config/litellm-router.yaml to include your Google AI Studio model.
+
+YAML
+model_list:
+  - model_name: gemini-pro
+    litellm_params:
+      model: gemini/gemini-1.5-pro
+      api_key: os.environ/GEMINI_API_KEY # Tells LiteLLM to look for this in your environment
+3. The Roadmap to Basic Agent Function
+To keep steps to an absolute minimum, follow this sequence:
+
+Environment Sync: Create your .env file:
+
+Bash
+GEMINI_API_KEY=AIzaSy...your_actual_key_here
+2.  **Bootstrap Script:** Create a simple `start_agent.sh` (or `.ps1`) that does two things:
+    *   Loads your environment variables.
+    *   Starts the proxy: `litellm --config config/litellm-router.yaml --port 4000`
+3.  **Validation:** Run a simple curl command to verify the agent is "alive" before doing anything else:
+    ```bash
+    curl http://0.0.0.0:4000/v1/chat/completions \
+      -H "Content-Type: application/json" \
+      -d '{ "model": "gemini-pro", "messages": [{"role": "user", "content": "Hi!"}] }'
+4. Updating project-state.json
+To make this "durable," let's track the configuration status in docs/project-state.json. I suggest adding a litellm_status block so you know if your environment is ready to boot.
+
+Proposed Addition:
+
+JSON
+  "litellm_status": {
+    "router_config": "config/litellm-router.yaml",
+    "primary_provider": "google_ai_studio",
+    "env_vars_required": ["GEMINI_API_KEY"],
+    "proxy_port": 4000
+  }
+Does this roadmap align with your goal, or would you prefer to build out the "agent" logic (like system instructions) before finalizing the routing setup?
+
+Ok you have to go slow. One line at a time. So we are creating a master key file as a solid brick architrcture from which to build lllm > agent > things work by talking to it vs cli hell?
+
+Yes, that is exactly the right mental model.
+
+Think of the .env file as the foundation, the litellm-router.yaml as the load-bearing arch, and the LiteLLM Proxy as the interface that lets your agents "talk" rather than you managing "CLI hell."
+
+To start building this "solid brick architecture," let's take the first concrete step. We need to create that .env file securely.
+
+Please run this command to create the file and add your placeholder (we will swap the actual key in a moment):
+
+PowerShell
+"GEMINI_API_KEY=your_key_here" | Out-File -FilePath .\.env -Encoding utf8
+Once that is done, verify the file exists by running:
+
+PowerShell
+Get-Item .\.env
+
+

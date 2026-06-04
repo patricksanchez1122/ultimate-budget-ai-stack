@@ -1,23 +1,26 @@
 {
-  "project": "ultimate-budget-ai-stack",
-  "repository": "https://github.com/patricksanchez1122/ultimate-budget-ai-stack",
-  "branch": "resurrection",
-  "last_verified_commit": "ff3a84a",
-
-  "read_first": [
-    "docs/project-state.json",
-    "docs/context-pack.json",
-    "docs/runtime-state.json",
-    "docs/repo-snapshot.json"
-  ],
-
-  "current_goal": "Restore runtime startup path",
-
-  "verified": {
-    "github_branch_exists": true,
-    "venv_exists": true,
-    "litellm_installed": true,
-    "litellm_version": "1.87.0",
-    "router_config": "config/litellm-router.yaml"
-  }
+    "project":  "ultimate-budget-ai-stack",
+    "repository":  "https://github.com/patricksanchez1122/ultimate-budget-ai-stack",
+    "branch":  "resurrection",
+    "last_verified_commit":  "ff3a84a",
+    "read_first":  [
+                       "docs/project-state.json",
+                       "docs/context-pack.json",
+                       "docs/runtime-state.json",
+                       "docs/repo-snapshot.json"
+                   ],
+    "current_goal":  "Restore runtime startup path",
+    "verified":  {
+                     "github_branch_exists":  true,
+                     "venv_exists":  true,
+                     "litellm_installed":  true,
+                     "litellm_version":  "1.87.0",
+                     "router_config":  "config/litellm-router.yaml"
+                 },
+    "litellm_status":  {
+                           "router_config":  "config/litellm-router.yaml",
+                           "primary_provider":  "google_ai_studio",
+                           "env_vars_required":  "GEMINI_API_KEY",
+                           "proxy_port":  4000
+                       }
 }

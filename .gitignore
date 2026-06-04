@@ -52,4 +52,4 @@ artifacts/
 # Ignore sensitive configs
 secrets/
 *.pem
-*.key
+*.key.env

@@ -1,0 +1,26 @@
+Repository:
+https://github.com/patricksanchez1122/ultimate-budget-ai-stack
+
+Branch:
+resurrection
+
+Read first:
+
+* docs/context-pack.json
+* docs/runtime-state.json
+* docs/repo-snapshot.json
+* docs/Project Ressurection Prompt.txt
+
+Goal:
+Restore project state.
+
+Do not redesign architecture.
+Do not create new governance.
+Do not speculate.
+
+Summarize:
+
+1. Current verified state
+2. Working components
+3. Broken components
+4. Immediate next action
