@@ -1,4 +1,0 @@
-# Historical reference only
-# Original secrets removed before repository commit
-
-GEMINI_API_KEY=REDACTED

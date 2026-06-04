@@ -1,0 +1,1 @@
+The mds in this folder and elsewhere are designed to keep an LLM on track with the oprerational procedure with the project.  You know as well as I do that LLM hallucination can waste your time.  *Hallucination reduction and memory preservation architecture*

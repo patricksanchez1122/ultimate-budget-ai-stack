@@ -1,0 +1,19 @@
+RW
+
+Project repository:
+C:\Users\RT\ai-stack
+
+Read:
+docs/project-resurrection.md
+
+Goal:
+Restore project state.
+
+Do not redesign architecture.
+Do not create governance.
+Do not speculate.
+
+Summarize:
+1. Current state
+2. Verified functionality
+3. Immediate next build step

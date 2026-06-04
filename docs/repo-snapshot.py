@@ -1,0 +1,40 @@
+﻿import subprocess
+from pathlib import Path
+import json
+
+ROOT = Path.cwd()
+
+def run(cmd):
+    return subprocess.check_output(cmd, shell=True).decode(errors="ignore")
+
+def get_files():
+    return run("git ls-files").splitlines()
+
+def read_file(path, max_chars=8000):
+    try:
+        return Path(path).read_text(encoding="utf-8", errors="ignore")[:max_chars]
+    except Exception as e:
+        return f"ERROR: {e}"
+
+def main():
+    files = get_files()
+
+    snapshot = {
+        "repo_root": str(ROOT),
+        "file_count": len(files),
+        "files": []
+    }
+
+    for f in files:
+        snapshot["files"].append({
+            "path": f,
+            "content_preview": read_file(f)
+        })
+
+    out_path = ROOT / "docs" / "repo-snapshot.json"
+    out_path.write_text(json.dumps(snapshot, indent=2), encoding="utf-8")
+
+    print("Snapshot written to docs/repo-snapshot.json")
+
+if __name__ == "__main__":
+    main()

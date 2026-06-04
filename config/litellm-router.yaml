@@ -1,0 +1,37 @@
+model_list:
+
+  - model_name: fast-groq
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+
+  - model_name: fast-cerebras
+    litellm_params:
+      model: cerebras/llama-3.1-8b
+
+  - model_name: fast-cloudflare
+    litellm_params:
+      model: cloudflare/llama-3.3-70b
+
+  - model_name: default-router
+    litellm_params:
+      model: openrouter/deepseek/deepseek-r1
+
+  - model_name: default-coder
+    litellm_params:
+      model: openrouter/qwen/qwen3-coder-480b
+
+  - model_name: long-context
+    litellm_params:
+      model: gemini/gemini-1.5-pro
+
+  - model_name: deep-reasoner
+    litellm_params:
+      model: openrouter/deepseek/deepseek-r1
+
+  - model_name: embedder
+    litellm_params:
+      model: cohere/embed-english-v3.0
+
+  - model_name: reranker
+    litellm_params:
+      model: cohere/rerank-v3.5

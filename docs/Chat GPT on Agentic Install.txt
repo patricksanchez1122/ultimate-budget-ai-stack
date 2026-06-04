@@ -1,0 +1,457 @@
+Grok Does Hermes 1.0.txt
+Document
+I'm migrating here from Grok because I'm broke T_T.  In the document is our convo about Hermes. 
+.env
+File
+I edited the file that ps cmd pulled:
+PS C:\Users\RT> notepad C:\Users\RT\AppData\Local\hermes\.env
+I have attached that file with the real API redacted with a series of Xs for security.
+False Dialagrams, Gemini Switching, and Lite LLM(1).txt
+Document
+Gemini clarifies Model strengths(1).txt
+Document
+Gemini clarifies Model Token Realities - PuterJS - LiteLLM(1).txt
+Document
+Gemini clarifies Model Token Realities(1).txt
+Document
+Gemini on Puter js(1).txt
+Document
+Gemini on Securing a full power Hermes(1).txt
+Document
+Gemini says Hermes can leran to operate like OpenHuman(1).txt
+Document
+Gemini's thoughts on free tier stack for Agents(1).txt
+Document
+Lets zoom out.  I just put this on pause to do some deep research with Gemini before making moves that could result in just wasting time.  I'm going to upload a series of files containing the contents of our chat.  The initial files will just be setting the stage.  The final file of our convo that I will upload separately is the culmination of what 
+Gemini thinks is a good plan.  But one of those convo files has Gemini admitting that you are better at building stuff like this.  I just talked to Gemini as it identified itself as a superior researcher to gather data on my options.  Have a look at the initial convos and tell me what you think, but wait for the next upload for Gemini's ultimate plan before making yours.  I would like you to evaluate it and make adjustments if you see a better path.
+Gemini Ultimate Free Tier Agentic Swarm Team Setup(1).txt
+Document
+Well check it out dude - we added several layers beyond just remote llm providers.  Attatched is roughly Gemini's ultimate free setup convo.
+Current Agentic Assets.zip
+Zip Archive
+Ok, I'm sorry for hesitating before getting started, but I figured I'd doo some deep research on all our options before proceeding.  I've got multiple files of research for you digest.  Some of them are redundant and for that I apologize.  This is only because it seems Gemini's editing of the deep research seems to be deleting things that should have remained included.  Anyway I understand that making use of all of this right away is silly.  I just wanted to get the full map of our options and develop the best plan for Hermes going forward.  Here are the files - let me know if you can read all 13 inside the zip file :
+PS Chat GPT Debug.txt
+Document
+Ok I have no idea what happened here.  Not sure I pasted the command I was on correctly.  I don't even have the full output as  it seems to have exceeded the viewable limits - I can't scroll up to the beginning anymore.  I have some of the output in an upload.
+Large CLI Output for ChatGPT.txt
+Document
+No meant the cmd output.  I'm uploading it here.
+Currently known Hermes and LiteLLM Configs.zip
+Zip Archive
+Ok from here on out we need to be very clear about where the directories are for the files we are working on and keep a log of these locations and details of what directories contain what major files to be edited.  I noticed there are two locations with litellm files one in the hermes directory that is strangely invisible unless you run a search even with display hidden files enabled : C:\Users\RT\AppData\Local\hermes\hermes-agent\venv\Lib\site-packages\litellm and the other that I guess you created for our projects: C:\Users\RT\ai-stack.  I'm going to upload each config I found with the original filename altered with a descriptor in parenthises.  There is also a C:\Users\RT\ai-stack\litellm-gateway\venv\Lib\site-packages directory similar to the one in the hermes directory.  I can't find a config in that one at first glance.  Combing through it aimlessly would potentally be a waste of brainpower.  Now that I've found these specific directories, I could let you examine them via PS output.  Performing those previous search commands yelled an output too large for your free tier to handle - hence my manual hunt.  I didn't find a litellm config besides the one in the aistack  directory  Would getting PS to output the full structure and file contents be useful to you going forward?
+Hermes Project Directory Maps.zip
+Zip Archive
+Sorry, but I think that I need to eliminate the possibility of guessing and fully understand the map.  Thus I'm giving you the full directory.  Also I'm not skilled enough to know what to give you and what can be left out.  Therefore you now have all of it - if the upload works.  I think that justifies using another upload credit for the day.   Let me know which format you find more useful.  I think the pdfs are a slight dud due to not containing the file contents and possibly redundant anyway.
+Hermes Directory and Provider Config.zip
+Zip Archive
+I've been launching from terminal.  I'd like to upgrade to a nice GUI eventually, but I'm ok with using the cli for now to get base architecture up and running.  Good CLI practice too.  I'm just gonna burn an upload credit and refresh your memory since it appears prior uploads are useless.  I'm including the hermes directory again and the configs that I believe one fits the bill.   Again the config file names are modified to include descriptors in ().  How do I get you to retain the information from the uploads in memory for the future of this project?  Is there a workaround where I could upload it to a cloud service and simply point you to a link without wasting upload credits?
+Grok Does Hermes 1.0(1).txt
+Document
+I don't remember.  Grok helped with the install.  I think I have the convo file still saved.  Ah yeah Grok does Hermes lol...
+Hermes Project Directory Maps(1).zip
+Zip Archive
+The litellm config in the aistack directory is actually very small and says nothing about vertex.  Here's the directory that has the only provider config file.  For some reason I do not see a provider config for litellm in the hermes directory.
+
+aistack litellm config:
+model_list:
+  - model_name: gemini
+    litellm_params:
+      model: gemini/gemini-2.0-flash
+      api_key: "MyActualGeminiKey"
+
+  - model_name: groq-llama
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: "MyActualGRoqKey"
+
+general_settings:
+  master_key: "hermes-master-key"
+
+I'm including the directory zip to re inform you of what files are where.
+AI Stack Directory Map.csv
+Spreadsheet
+Just to make sure your not being redundant let me remind you of the existing directory with another upload credit (worth it).
+Scaleable Agent Candidates and Resources.zip
+Zip Archive
+Ok you need to clarify why we are making yet another litellm directory when there is already an existing independent litellm build in the ai stack folder.  Anyway I got you some fresh data uploads to chew on: and update of the folder structure + existing architecture, and gemini's deep research on agent scaffold candidates.  Let me know if Gemini changed your mind on initial agent build.  And we really need to get Github in the loop sooner so I can stop burning upload credits.
+Directory Request.zip
+Zip Archive
+Yeah definitely too massive.  It flooded the PS window past the ability to scroll up to the original command parameters.  Here's what I got though:
+
+(You can see where I could no longer scroll up to copy)
+
+Yeah - it's too large to raw paste.  Here's an upload. 
+
+RW.
+
+Observed state:
+
+PS C:\Users\RT\ai-stack> git status
+
+Result:
+
+Changes to be committed:
+    new file: docs/project-resurrection-ark.md
+
+Untracked:
+    agents/strands-core/hello_strands.py
+    docs/Project Ressurection Prompt.txt
+    docs/Readme!.txt
+
+You explicitly instructed:
+
+You must ignore strands in favor of resurrection
+
+Agreed.
+
+Current Objective
+
+Not Strands.
+
+Not architecture.
+
+Not new features.
+
+Migration to a fresh chat with maximum state preservation and minimum noise.
+
+Verified Resurrection Checkpoint
+
+The ark is already staged:
+
+docs/project-resurrection-ark.md
+
+That means the next action is simply:
+
+git commit -m "Add project resurrection ark"
+
+Then:
+
+git push
+
+Do not worry about the three remaining untracked files right now.
+
+They are not required for migration.
+
+The ark is.
+
+New Chat Initialization Protocol
+
+When the commit and push succeed:
+
+Open a new ChatGPT conversation.
+Paste the contents of docs/project-resurrection-ark.md.
+Add:
+Writing
+
+RW
+
+We are resurrecting the Ultimate Budget AI Stack project.
+
+The attached Project Resurrection Ark contains the verified project state.
+
+Priorities:
+
+Restore project state.
+Operate from observed repository state only.
+Follow verification-first workflow.
+Optimize for ROE (Return On Energy).
+Avoid speculative architecture unless it directly unblocks implementation.
+
+Before proposing changes:
+
+verify repository state
+verify current objective
+identify the last completed checkpoint
+
+The goal is continuity, not recreation of the previous conversation.
+
+Optionally paste:
+git status
+
+from the fresh repo state after the push.
+
+What To Leave Behind
+
+Leave this conversation behind.
+
+Do not attempt to preserve:
+
+every correction
+every failed command
+every architecture tangent
+every debugging loop
+
+The repo is the source of truth.
+
+The ark is the continuity bridge.
+
+Everything else is disposable context.
+
+Current mission:
+
+Commit ark
+Push ark
+Start fresh chat
+Resurrect from ark
+
+Nothing else.
+
+PS C:\Users\RT\ai-stack> git commit -m "Add project resurrection ark"
+[main 6e6c876] Add project resurrection ark
+ 1 file changed, 263 insertions(+)
+ create mode 100644 docs/project-resurrection-ark.md
+PS C:\Users\RT\ai-stack>
+
+RW.
+
+Observed state:
+
+git commit -m "Add project resurrection ark"
+
+Result:
+
+[main 6e6c876] Add project resurrection ark
+
+That means the ark is now committed.
+
+The next verification step is:
+
+git push
+
+After that:
+
+git status
+
+What we want to see:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+    agents/strands-core/hello_strands.py
+    docs/Project Ressurection Prompt.txt
+    docs/Readme!.txt
+
+and no staged changes.
+
+If that verifies, then the resurrection checkpoint exists in both:
+
+local git history
+GitHub
+
+At that point I would consider the migration complete.
+
+Then open a fresh chat and paste:
+
+docs/project-resurrection-ark.md
+latest git status
+
+Nothing else.
+
+Not this conversation.
+Not the command history.
+Not the architecture debates.
+
+Just the ark and current repository state.
+
+That gives the new chat a clean, verified starting point with dramatically less context baggage than this thread.
+
+PS C:\Users\RT\ai-stack> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        agents/strands-core/hello_strands.py
+        docs/Project Ressurection Prompt.txt
+        docs/Readme!.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\Users\RT\ai-stack>
+
+RW.
+
+Observed state:
+
+git status
+
+returned:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+    agents/strands-core/hello_strands.py
+    docs/Project Ressurection Prompt.txt
+    docs/Readme!.txt
+
+This is actually a good migration state.
+
+What we know:
+
+✅ project-resurrection-ark.md is committed
+
+✅ working tree is otherwise clean
+
+✅ only three untracked files remain
+
+✅ repo is synchronized with origin
+
+✅ resurrection checkpoint exists
+
+From a resurrection perspective, this is enough.
+
+You do not need to solve those three untracked files before migrating.
+
+In fact, given your stated goal of detoxing context and recovering ROE, I would stop here.
+
+Migration Trigger Reached
+
+You identified:
+
+hallucination drift
+workflow drift
+RAM bloat (~2 GB tab)
+sluggish performance
+repeated course corrections
+
+Those are all valid reasons to terminate a session.
+
+Fresh Chat Procedure
+
+Open a new chat.
+
+Paste:
+
+RW
+
+I am resurrecting the Ultimate Budget AI Stack project.
+
+Read the following resurrection ark first.
+
+Then paste the contents of:
+
+docs/project-resurrection-ark.md
+
+Then paste:
+
+git status
+
+output:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+    agents/strands-core/hello_strands.py
+    docs/Project Ressurection Prompt.txt
+    docs/Readme!.txt
+
+Then stop.
+
+Let the new chat summarize the current verified state before proposing any action.
+
+One Last Observation
+
+The resurrection process appears to have worked.
+
+Several hours ago we were drifting into:
+
+speculative architecture
+phantom files
+unverified assumptions
+
+The RW protocol repeatedly pulled the conversation back to:
+
+Observe
+Verify
+Act
+
+That's exactly what a recovery protocol is supposed to do.
+
+You now have:
+
+a repository checkpoint
+a committed resurrection document
+a clear migration path
+
+That's a reasonable place to end this session and start fresh.
+
+RW
+
+RW.
+
+Observed state only.
+
+Last verified output:
+
+PS C:\Users\RT\ai-stack> git status
+
+returned:
+
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+    agents/strands-core/hello_strands.py
+    docs/Project Ressurection Prompt.txt
+    docs/Readme!.txt
+
+nothing added to commit but untracked files present
+Current Objective
+
+Not Strands.
+
+Not architecture.
+
+Not cleanup.
+
+Not new features.
+
+Current objective:
+
+Migrate to a fresh chat with verified project state preserved.
+Last Verified Checkpoint
+
+Repository:
+
+C:\Users\RT\ai-stack
+
+Committed:
+
+docs/project-resurrection-ark.md
+
+Commit:
+
+6e6c876
+
+Repository status:
+
+Clean except for 3 untracked files.
+Next Action
+
+Open a new chat.
+
+Paste:
+
+Contents of docs/project-resurrection-ark.md
+Latest git status
+
+Nothing else required.
+
+Stop Condition
+
+Do not continue implementation in this chat.
+
+This chat has already been identified as degraded due to:
+
+extreme length
+RAM growth
+repeated workflow corrections
+context drift
+
+RW outcome:
+
+State restored.
+Checkpoint verified.
+Migration authorized.

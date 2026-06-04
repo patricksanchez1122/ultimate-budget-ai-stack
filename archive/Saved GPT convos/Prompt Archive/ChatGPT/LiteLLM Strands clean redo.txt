@@ -1,0 +1,400 @@
+RW
+
+Project repository:
+C:\Users\RT\ai-stack
+
+Read:
+docs/project-resurrection.md
+
+Goal:
+Restore project state.
+
+Do not redesign architecture.
+Do not create governance.
+Do not speculate.
+
+Summarize:
+1. Current state
+2. Verified functionality
+3. Immediate next build step
+Stopped thinking
+
+I can't directly read files from your local machine at C:\Users\RT\ai-stack.
+
+To perform the requested RW summary, upload either:
+
+docs/project-resurrection.md, or
+the entire docs folder as a ZIP, or
+paste the contents of project-resurrection.md here.
+
+Once I have the file, I'll provide only:
+
+Current state
+Verified functionality
+Immediate next build step
+
+and will follow your constraints:
+
+No architecture redesign
+No governance
+No speculation
+Only information verified from the document and any supplied project artifacts.
+I need a ps cmd to give you the dir contents to look at.
+
+For a quick inventory of the repo structure:
+
+Get-ChildItem C:\Users\RT\ai-stack -Recurse |
+    Select-Object FullName |
+    Out-String -Width 500
+
+For something more useful (includes file sizes and timestamps):
+
+Get-ChildItem C:\Users\RT\ai-stack -Recurse -File |
+    Select-Object FullName,Length,LastWriteTime |
+    Sort-Object FullName |
+    Out-String -Width 500
+
+For just the docs directory:
+
+Get-ChildItem C:\Users\RT\ai-stack\docs -Recurse |
+    Select-Object FullName,Length,LastWriteTime |
+    Out-String -Width 500
+
+And to dump the resurrection document itself:
+
+Get-Content C:\Users\RT\ai-stack\docs\project-resurrection.md -Raw
+
+The fastest path is usually:
+
+Paste the output of:
+
+Get-ChildItem C:\Users\RT\ai-stack\docs -Recurse |
+    Select FullName
+
+Paste:
+
+Get-Content C:\Users\RT\ai-stack\docs\project-resurrection.md -Raw
+
+Then I can do the RW summary against the actual document rather than the directory tree.
+
+Ai Stack.csv
+Spreadsheet
+Also I am able to upload this.  Somewhere in there is something that procedurally points you at my GH repo link that is public.
+
+RW assessment from the evidence you've provided:
+
+Verified Current State
+
+Repository:
+
+ultimate-budget-ai-stack
+
+Git:
+
+Branch: main
+Local branch is synchronized with origin/main
+Working tree is not clean
+Verified Changes Present
+
+Deleted tracked files:
+
+Multiple files under agents/strands-core/
+litellm-gateway/config.yaml
+Two LiteLLM-related text files
+
+Untracked additions:
+
+config/
+tools/
+docs/context-pack.json
+docs/runtime-state.json
+docs/repo-snapshot.json
+docs/repo-snapshot.py
+health.json
+additional documentation files
+What Can Be Verified
+
+The repository has undergone a significant local cleanup/reorganization that has not yet been committed.
+
+The deleted files are almost entirely architecture and design documentation:
+
+architecture
+policy
+orchestration
+provider abstractions
+telemetry
+memory design
+tool layer design
+
+This is consistent with the course correction described in project-resurrection-ark.md:
+
+Build → Verify → Expand
+
+rather than architecture-first development.
+
+What Cannot Yet Be Verified
+
+From the evidence so far, we cannot determine:
+
+whether LiteLLM currently runs
+whether Hermes currently runs
+whether any provider is configured
+whether agent execution beyond Agent() initialization works
+whether the new config/ and tools/ directories are functional replacements for removed content
+Last Verified Checkpoint
+
+Still:
+
+from strands import Agent
+
+agent = Agent()
+
+and successful initialization.
+
+No later runtime checkpoint has been presented.
+
+Immediate RW Next Step
+
+The resurrection document instructs:
+
+Identify the last verified checkpoint.
+
+Continue implementation.
+
+The highest-ROE next verification is not reading more architecture docs.
+
+It is determining whether a runnable Strands agent already exists in the repository.
+
+Run:
+
+Get-ChildItem . -Recurse -Include *.py |
+    Select-Object FullName
+
+or more narrowly:
+
+Get-ChildItem .\agents -Recurse -Include *.py |
+    Select FullName
+
+That will tell us whether:
+
+a working agent already exists,
+a minimal agent script exists,
+or the next step is creating the first executable agent.
+
+At the moment, RW indicates:
+
+Repository synchronized.
+Cleanup in progress.
+Last verified runtime = Strands Agent initialization.
+Next verification target = locate and execute the smallest runnable agent.
+
+Hermes is dead.  I deleted all the Lite LLM I could find.  We never seemed to be able to figure out where it was configuring providers.  So I'm after a clean LiteLLM install to start fresh so we know exactly what we're dealing with.  It then needs to connect to strands with provider keys and perform a basic function test.  To be clear - asking for dir output from ps floods the window to the point that you can't even scroll up much less actually paste it here.
+
+That changes the picture substantially.
+
+Based on what you've now verified:
+
+Current Verified State
+Hermes is intentionally abandoned.
+Existing LiteLLM configuration was not trusted.
+LiteLLM-related files were deleted.
+Provider configuration location became unclear.
+Goal is not recovery of old config.
+Goal is a clean known-good LiteLLM install followed by Strands integration verification.
+
+That aligns with the ROE principle in your resurrection document.
+
+Trying to reverse-engineer ghost configs is lower ROE than rebuilding a minimal known-good stack.
+
+Also Agreed on Directory Dumps
+
+A recursive file listing is a terrible tool here.
+
+Instead of:
+
+Get-ChildItem -Recurse
+
+use targeted questions:
+
+Get-ChildItem config
+Get-ChildItem tools
+Get-Content somefile
+
+or
+
+git diff --name-status
+
+Small evidence packets are much more useful than 10,000 lines of directory output.
+
+RW Summary
+
+Last verified checkpoint:
+
+from strands import Agent
+
+agent = Agent()
+
+Verified successful.
+
+Target checkpoint:
+
+Strands -> LiteLLM -> Provider -> Response
+
+Nothing else matters until that works.
+
+Suggested Build Sequence
+Step 1
+
+Verify LiteLLM is actually gone.
+
+Run:
+
+pip show litellm
+
+inside the project venv.
+
+If present:
+
+pip uninstall litellm
+
+until removed.
+
+Step 2
+
+Fresh install.
+
+pip install litellm
+
+Verify:
+
+python -c "import litellm; print(litellm.__version__)"
+Step 3
+
+Provider-only test.
+
+No Strands.
+
+No agent.
+
+No orchestration.
+
+Just LiteLLM talking directly to one provider.
+
+For example OpenAI:
+
+from litellm import completion
+
+response = completion(
+    model="gpt-4o-mini",
+    messages=[{"role":"user","content":"Say hello"}]
+)
+
+print(response.choices[0].message.content)
+
+If that fails:
+
+provider problem
+key problem
+LiteLLM problem
+
+not Strands.
+
+Step 4
+
+Only after LiteLLM works:
+
+Connect Strands to LiteLLM.
+
+Smallest possible test.
+
+One prompt.
+
+One response.
+
+Record output.
+
+Information Needed
+
+Before I prescribe the exact Strands wiring:
+
+Which provider are you intending to use first?
+
+OpenAI
+Anthropic
+Gemini
+OpenRouter
+Something else
+
+And are you planning:
+
+LiteLLM SDK only (Python package)
+LiteLLM proxy server
+
+Those are very different setups, and the simplest path depends on which you're targeting. Right now, the highest-ROE path is usually:
+
+Provider API key → LiteLLM SDK test → Strands test
+
+with no proxy server until basic functionality is verified.
+
+PS C:\Users\RT\ai-stack> pip show litellm
+pip : The term 'pip' is not recognized as the name of a cmdlet, function, script
+file, or operable program. Check the spelling of the name, or if a path was
+included, verify that the path is correct and try again.
+At line:1 char:1
++ pip show litellm
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (pip:String) [], CommandNotFoundEx
+   ception
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\RT\ai-stack>
+
+That's actually useful evidence.
+
+You're not currently in an activated Python environment, or Python's Scripts directory isn't on PATH.
+
+The resurrection document says your verified venv is:
+
+C:\Users\RT\ai-stack.venv
+
+Let's verify that first.
+
+From PowerShell:
+
+Get-Command python
+
+and
+
+python --version
+
+If python works, use:
+
+python -m pip show litellm
+
+instead of:
+
+pip show litellm
+
+because python -m pip bypasses PATH issues.
+
+If python itself is not found, check the venv directly:
+
+Test-Path C:\Users\RT\ai-stack.venv\Scripts\python.exe
+
+If that returns True, use the interpreter explicitly:
+
+C:\Users\RT\ai-stack.venv\Scripts\python.exe -m pip show litellm
+
+RW-wise, we're still in the verification phase:
+
+Verify which Python is being used.
+Verify whether LiteLLM is installed.
+Remove/install as needed.
+Verify a direct provider call.
+Verify Strands → provider response.
+
+One command at a time is going to get us there faster than trying to infer the environment. Run:
+
+python --version
+
+and post the result.
